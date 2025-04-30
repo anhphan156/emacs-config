@@ -20,6 +20,10 @@
           substituteInPlace $out/main.el \
             --replace "<NIX_STORE_PATH>" "$out"
         '';
+
+        otherDeps = prev.lib.makeBinPath (with prev; [
+          ghc
+        ]);
       in
         prev.symlinkJoin {
           name = "emacs";
@@ -27,6 +31,7 @@
             (prev.emacs.pkgs.withPackages (epkgs:
               with epkgs; [
                 evil
+                haskell-mode
               ]))
           ];
           nativeBuildInputs = [prev.makeWrapper];
@@ -34,7 +39,8 @@
             wrapProgram $out/bin/emacs \
               --add-flags '-q' \
               --add-flags '-l' \
-              --add-flags '${emacs-config}/main.el'
+              --add-flags '${emacs-config}/main.el' \
+              --set PATH ${otherDeps}:$PATH
           '';
         };
     };

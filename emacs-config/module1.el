@@ -8,3 +8,5 @@
 
 (require 'evil)
 (evil-mode 1)
+
+(require 'haskell-mode-autoloads)
