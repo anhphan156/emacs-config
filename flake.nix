@@ -32,6 +32,8 @@
               with epkgs; [
                 evil
                 haskell-mode
+                kanagawa-themes
+                doom-modeline
               ]))
           ];
           nativeBuildInputs = [prev.makeWrapper];
