@@ -8,11 +8,18 @@
 
 (set-face-attribute 'default nil :height 140)
 
-(display-line-numbers-mode)
-(setq display-line-numbers 'relative)
-
 (require 'kanagawa-themes)
 (load-theme 'kanagawa-wave t)
+
+(global-display-line-numbers-mode)
+(setq display-line-numbers 'relative)
+(set-face-attribute 'line-number-current-line nil
+                    :foreground "#F7EBE8"
+                    :background "#E54B4B"
+                    :weight 'bold)
+(set-face-attribute 'line-number nil
+                    :background (face-attribute 'default :background))
+
 
 (require 'doom-modeline)
 (doom-modeline-mode 1)
